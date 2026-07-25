@@ -2,6 +2,8 @@ import socket
 
 
 host = input(" Entre Host :")
+start_port =int(input( "Entre  first Port Scan :"))
+end_port =int(input( "Entre  last Port Scan :"))
 
 
 
@@ -17,7 +19,7 @@ print(f" Host :{host}")
 host_ipAddress =socket.gethostbyname(host)
 print(f" Ip Address {host_ipAddress}")
 print(" Scanning ports 70-100 ....")
-for port in range (70,100):
+for port in range (start_port,end_port):
     s =socket.socket(socket.AF_INET,socket.SOCK_STREAM)
     s.settimeout(1)
     resultat = s.connect_ex((host,port))
