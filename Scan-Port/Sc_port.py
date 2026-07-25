@@ -18,7 +18,7 @@ Python Port Scanner\n
 print(f" Host :{host}")
 host_ipAddress =socket.gethostbyname(host)
 print(f" Ip Address {host_ipAddress}")
-print(" Scanning ports 70-100 ....")
+print(f" Scanning ports {start_port} - {end_port} .....")
 for port in range (start_port,end_port):
     s =socket.socket(socket.AF_INET,socket.SOCK_STREAM)
     s.settimeout(1)
