@@ -19,7 +19,7 @@ print(f" Host :{host}")
 host_ip_Address =socket.gethostbyname(host)
 print(f" Ip Address {host_ip_Address}")
 print(f" Scanning ports {start_port} - {end_port} .....")
-def scan_port(port):
+def scan_port(start_port,end_port):
     for port in range (start_port,end_port+1):
         s =socket.socket(socket.AF_INET,socket.SOCK_STREAM)
         s.settimeout(1)
@@ -35,6 +35,8 @@ def scan_port(port):
         else :
             print(f"  Port {port} CLOSED")
         s.close()
+
+scan_port(start_port,end_port)
         
         
 
