@@ -19,7 +19,7 @@ Python Port Scanner\n
 print(f" Host :{host}")
 host_ip_Address =socket.gethostbyname(host)
 print(f" Ip Address {host_ip_Address} \n")
-print(f" Scanning port  .....\n" )
+print(f" Scanning port {first_port}-{last_port} .....\n" )
 def scan_port(port):
         s =socket.socket(socket.AF_INET,socket.SOCK_STREAM)
         s.settimeout(1)
