@@ -1,4 +1,4 @@
-# 🔎 Python Port Scanner
+#  Python Port Scanner
 
 A simple and lightweight **TCP Port Scanner** written in Python.
 
