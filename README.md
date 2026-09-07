@@ -1,22 +1,26 @@
-#  Python Port Scanner
+# 🔎 Python Port Scanner
 
-A simple and lightweight **TCP Port Scanner** written in Python.
+A simple **TCP Port Scanner written in Python** for learning network programming, sockets, DNS resolution, and basic cybersecurity concepts.
 
-This project was created to learn and practice **Python, networking, sockets, IP addresses, DNS resolution, and port scanning**.
+The project contains two versions of the scanner:
 
-> ⚠️ **Disclaimer:** This tool is intended for educational purposes and authorized security testing only. Do not scan systems or networks without permission.
+* `Sc_port.py` — basic port scanner
+* `Sc_port_fast.py` — faster version using concurrent scanning
+
+> ⚠️ **Disclaimer:** This project is for educational purposes and authorized security testing only. Never scan systems or networks without permission.
 
 ---
 
 ## 📌 Features
 
-* 🔍 Scan TCP ports on a target host
-* 🌐 Resolve domain names to IP addresses
-* ⚡ Fast port scanning
-* 🧵 Support for concurrent scanning
-* 📊 Display open ports
-* 🐍 Written entirely in Python
-* 🧠 Useful for learning basic network security concepts
+* 🔍 Scan TCP ports
+* 🌐 Accept a hostname or IP address
+* 🔄 Resolve hostnames to IP addresses
+* 📡 Test TCP connections
+* 🟢 Detect open ports
+* ⚡ Faster scanning with concurrency
+* 🐍 Uses Python's standard library
+* 💻 Works from the terminal
 
 ---
 
@@ -34,27 +38,29 @@ python-port-scanner/
 
 ---
 
-## 🐍 Sc_port.py
+## 🐍 Basic Scanner
 
-`Sc_port.py` is the basic version of the port scanner.
+### `Sc_port.py`
 
-It uses Python's `socket` module to try connecting to ports on the target machine.
+This is the basic implementation of the port scanner.
 
-Example:
+It uses Python's `socket` module to attempt TCP connections to ports on the target.
+
+If a connection can be established, the port is reported as open.
+
+Run it with:
 
 ```bash
 python Sc_port.py
 ```
 
-The program asks for a target and scans the specified ports.
-
 ---
 
-## ⚡ Sc_port_fast.py
+## ⚡ Fast Scanner
 
-`Sc_port_fast.py` is an optimized version of the scanner.
+### `Sc_port_fast.py`
 
-It uses **concurrent scanning** to check multiple ports at the same time, making the scanning process faster than the basic version.
+This version improves the scanning speed by checking multiple ports concurrently.
 
 Run it with:
 
@@ -62,21 +68,53 @@ Run it with:
 python Sc_port_fast.py
 ```
 
+The idea is:
+
+```text
+Basic Scanner
+
+Port 1 → Scan
+          ↓
+Port 2 → Scan
+          ↓
+Port 3 → Scan
+          ↓
+Port 4 → Scan
+
+
+Fast Scanner
+
+Port 1 → Scan ─┐
+Port 2 → Scan ─┤
+Port 3 → Scan ─┤ → Results
+Port 4 → Scan ─┘
+```
+
 ---
 
-## 🛠️ Technologies
+## 🌐 How It Works
 
-* **Python 3**
-* `socket`
-* `threading` / concurrency
-* DNS resolution
-* TCP networking
+The scanner follows a simple process:
 
----
-
-## 🌐 How Port Scanning Works
-
-A port represents a communication endpoint on a device.
+```text
+        Target
+          │
+          ▼
+   Hostname / IP
+          │
+          ▼
+    DNS Resolution
+          │
+          ▼
+   TCP Connection
+          │
+      ┌───┴───┐
+      │       │
+   Success   Failed
+      │       │
+      ▼       ▼
+    OPEN    CLOSED
+```
 
 For example:
 
@@ -88,19 +126,7 @@ For example:
 | 443  | HTTPS          |
 | 3306 | MySQL          |
 
-The scanner attempts to establish a TCP connection to each port.
-
-If the connection succeeds, the port is considered **open**.
-
-```text
-Target
-  │
-  ├── Port 22  → Open
-  ├── Port 80  → Open
-  ├── Port 443 → Open
-  ├── Port 8080 → Closed
-  └── ...
-```
+The scanner does **not** exploit these services. It only checks whether a TCP connection can be established.
 
 ---
 
@@ -118,19 +144,19 @@ Enter the project:
 cd python-port-scanner
 ```
 
-Go to the scanner directory:
+Enter the scanner directory:
 
 ```bash
 cd Scan-Port
 ```
 
-Run the scanner:
+Run the basic scanner:
 
 ```bash
 python Sc_port.py
 ```
 
-Or use the faster version:
+Or run the faster version:
 
 ```bash
 python Sc_port_fast.py
@@ -140,7 +166,8 @@ python Sc_port_fast.py
 
 ## 💻 Requirements
 
-Python 3.x
+* Python 3.x
+* No external Python packages are required.
 
 Check your Python version:
 
@@ -148,59 +175,62 @@ Check your Python version:
 python --version
 ```
 
-No external Python packages are required.
-
 ---
 
-## 📚 What I Learned
+## 🧠 Concepts Practiced
 
 This project helped me practice:
 
 * Python functions
-* Variables and data types
+* Variables
 * Loops
+* Conditions
 * Exception handling
 * User input
-* `socket` programming
+* `socket`
+* TCP connections
 * IP addresses
 * DNS resolution
-* TCP connections
 * Network ports
-* Concurrency
-* Basic network security concepts
+* Concurrent scanning
+* Basic network security
 * Git and GitHub
-
----
-
-## 🔐 Legal & Ethical Use
-
-This project is designed for **learning and authorized security testing**.
-
-Only scan:
-
-* Your own computer
-* Your own servers
-* Your own lab/network
-* Systems for which you have explicit permission to perform security testing
-
-Unauthorized port scanning may violate laws, policies, or terms of service.
 
 ---
 
 ## 🔮 Future Improvements
 
-Possible future features:
+Possible improvements for future versions:
 
 * [ ] Custom port ranges
+* [ ] Command-line arguments
 * [ ] Scan multiple targets
 * [ ] Service detection
-* [ ] Banner grabbing
+* [x] Banner grabbing
+* [x] Configurable timeout
 * [ ] Better error handling
-* [ ] Command-line arguments
-* [ ] Export scan results
-* [ ] Improved concurrent scanning
+* [ ] Export results to a file
 * [ ] Progress indicator
-* [ ] Timeout configuration
+* [ ] Better scan statistics
+* [ ] IPv6 support
+
+---
+
+## 🔐 Ethical Use
+
+This tool should only be used against systems that you own or have explicit permission to test.
+
+Good targets for learning include:
+
+```text
+127.0.0.1
+localhost
+Your own virtual machines
+Your own lab network
+CTF / authorized training environments
+```
+
+Unauthorized scanning can violate laws, security policies, or terms of service.
 
 ---
 
@@ -216,4 +246,4 @@ https://github.com/hatimhansal
 
 ## ⭐ Project
 
-If you find this project useful for learning, feel free to ⭐ the repository.
+If this project helped you learn Python networking or cybersecurity fundamentals, feel free to ⭐ the repository.
