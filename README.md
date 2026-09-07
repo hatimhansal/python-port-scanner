@@ -1,4 +1,4 @@
-# 🔎 Python Port Scanner
+#  Python Port Scanner
 
 A simple **TCP Port Scanner written in Python** for learning network programming, sockets, DNS resolution, and basic cybersecurity concepts.
 
