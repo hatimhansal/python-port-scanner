@@ -206,8 +206,8 @@ Possible improvements for future versions:
 * [ ] Command-line arguments
 * [ ] Scan multiple targets
 * [ ] Service detection
-* [x] Banner grabbing
-* [x] Configurable timeout
+* [ ] Banner grabbing
+* [ ] Configurable timeout
 * [ ] Better error handling
 * [ ] Export results to a file
 * [ ] Progress indicator
